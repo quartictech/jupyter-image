@@ -23,6 +23,6 @@ RUN chmod 600 /home/jovyan/.ssh/id_rsa
 USER $NB_USER
 
 RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
-RUN pip install git+ssh://git@github.com/quartictech/taijitu.git
+RUN pip install git+ssh://git@github.com/quartictech/shrubbery.git&subdirectory=taijitu
 
 CMD jupyter notebook --debug --NotebookApp.base_url=/analysis --NotebookApp.token=''
