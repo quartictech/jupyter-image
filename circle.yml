@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+
+test:
+  override:
+    - echo "No tests"
+
+deployment:
+  hub:
+    branch: /.*/
+    commands:
+      - curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | bash
+      - ./build.sh
