@@ -1,0 +1,6 @@
+#!/bin/bash
+MODULE=$1
+BRANCH="${2:-develop}"
+pip install --upgrade \
+	git+ssh://git@github.com/quartictech/shrubbery.git@$BRANCH\#subdirectory=$MODULE\&egg=$MODULE \
+	--upgrade-strategy only-if-needed

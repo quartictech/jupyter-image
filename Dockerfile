@@ -16,6 +16,7 @@ COPY jupyter-theme/fonts/* /home/jovyan/.jupyter/custom/fonts/
 RUN pip install jgscm pyarrow fastparquet geopandas
 
 USER root
+COPY bin/* /usr/bin
 RUN mkdir /home/jovyan/.ssh
 COPY id_rsa* /home/jovyan/.ssh/
 RUN chown -R $NB_USER /home/jovyan/.ssh
@@ -23,6 +24,6 @@ RUN chmod 600 /home/jovyan/.ssh/id_rsa
 USER $NB_USER
 
 RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
-RUN pip install git+ssh://git@github.com/quartictech/shrubbery.git\#subdirectory=taijitu\&egg=taijitu
+RUN shrubbery_update taijitu
 
 CMD jupyter notebook --debug --NotebookApp.base_url=/analysis --NotebookApp.token=''
