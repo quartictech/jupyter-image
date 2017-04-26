@@ -13,7 +13,7 @@ ADD jupyter_notebook_config.py /etc/jupyter/
 COPY jupyter-theme/* /home/jovyan/.jupyter/custom/
 COPY jupyter-theme/fonts/* /home/jovyan/.jupyter/custom/fonts/
 
-RUN pip install jgscm pyarrow fastparquet geopandas nltk
+RUN pip install jgscm pyarrow fastparquet geopandas nltk tornado==4.4.1
 RUN python  -m nltk.downloader stopwords
 
 USER root
