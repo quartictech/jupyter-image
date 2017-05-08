@@ -297,7 +297,7 @@ div#notebook {
  background-color: #1a2028;
  min-height: 0px;
  box-shadow: none;
- width: 980px;
+ width: 100%;
  margin-right: auto;
  margin-left: auto;
 }
