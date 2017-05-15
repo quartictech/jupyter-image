@@ -1,3 +1,3 @@
 c.InteractiveShellApp.extensions = [
-    'taijitu.taijitu'
+    'taijitu'
 ]
