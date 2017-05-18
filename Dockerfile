@@ -29,4 +29,5 @@ USER $NB_USER
 RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
 RUN shrubbery_update taijitu
 
-CMD jupyter notebook --debug --NotebookApp.base_url=/analysis --NotebookApp.token=''
+COPY update.sh /
+CMD /update.sh && jupyter notebook --debug --NotebookApp.base_url=/analysis --NotebookApp.token=''
