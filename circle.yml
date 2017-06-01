@@ -10,6 +10,8 @@ jobs:
       - checkout
 
       - setup_remote_docker
+          reusable: true
+          exclusive: true
 
       - run: |
           curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | bash
