@@ -14,5 +14,5 @@ jobs:
           exclusive: true
 
       - run: |
-          curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | bash
+          curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | sh
           ./build.sh
