@@ -1,6 +1,4 @@
 #!/bin/bash
-MODULE=$1
-BRANCH="${2:-develop}"
+BRANCH="${1:-develop}"
 pip install --upgrade \
-	git+ssh://git@github.com/quartictech/shrubbery.git@$BRANCH\#subdirectory=$MODULE\&egg=$MODULE \
-	--upgrade-strategy only-if-needed
+	git+ssh://git@github.com/quartictech/shrubbery.git@$BRANCH --upgrade-strategy only-if-needed
