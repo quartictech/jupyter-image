@@ -1,14 +1,16 @@
-machine:
-  services:
-    - docker
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker
 
-test:
-  override:
-    - echo "No tests"
+    working_directory: ~/jupyter-image
 
-deployment:
-  hub:
-    branch: /.*/
-    commands:
-      - curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | bash
-      - ./build.sh
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run: |
+          curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login | bash
+          ./build.sh
