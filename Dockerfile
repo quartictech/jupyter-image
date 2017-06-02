@@ -30,4 +30,4 @@ USER $NB_USER
 RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
 RUN shrubbery_update
 
-CMD shrubbery_update && jupyter notebook --debug --NotebookApp.base_url=/analysis --NotebookApp.token=''
+CMD shrubbery_update && jupyter notebook --debug --ip='*' --NotebookApp.base_url=/analysis --NotebookApp.token=''
