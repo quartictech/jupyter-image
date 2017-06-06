@@ -46,7 +46,7 @@ RUN apt-get update \
  && apt-get install -y libgeos-dev ssh curl openssh-server \
  && apt-get clean \
  && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* \
- && mkdir /var/run/ssh
+ && mkdir /var/run/sshd
 
 RUN echo "deb http://packages.cloud.google.com/apt gcsfuse-jessie main" | tee /etc/apt/sources.list.d/gcsfuse.list \
  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
