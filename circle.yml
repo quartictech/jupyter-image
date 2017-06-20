@@ -11,7 +11,8 @@ jobs:
 
       - setup_remote_docker
 
-      - run: |
+      - dependencies: |
           apk --no-cache add curl docker
-          curl https://raw.githubusercontent.com/quartictech/circleci-utils/feature/circle-2.0/circleci-gcloud-login
+          curl https://raw.githubusercontent.com/quartictech/circleci-utils/feature/circle-2.0/circleci-gcloud-login | bash
+      - build: |
           ./build.sh
