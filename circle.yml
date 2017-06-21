@@ -13,6 +13,6 @@ jobs:
 
       - run: |
           apk --no-cache add curl docker
-          curl https://raw.githubusercontent.com/quartictech/circleci-utils/feature/circle-2.0/circleci-gcloud-login | bash
+          curl https://raw.githubusercontent.com/quartictech/circleci-utils/develop/circleci-gcloud-login-2.0 | bash
       - run: |
           ./build.sh
