@@ -13,5 +13,5 @@ jobs:
       - setup_remote_docker
 
       - run: |
-          gcloud-auth
+          gcloud-auth --with-docker
           ./build.sh
