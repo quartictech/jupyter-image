@@ -1,3 +1,3 @@
 c.InteractiveShellApp.extensions = [
-    'quartic'
+    'quartic.ipython_magics'
 ]
