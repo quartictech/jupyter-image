@@ -43,22 +43,14 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 # Quartic stuff
 USER root
 RUN apt-get update \
- && apt-get install -y libgeos-dev ssh curl openssh-server libspatialindex-c3 \
+ && apt-get install -y libgeos-dev curl libspatialindex-c3 \
  && apt-get clean \
- && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* \
- && mkdir /var/run/sshd
+ && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 RUN echo "deb http://packages.cloud.google.com/apt gcsfuse-jessie main" | tee /etc/apt/sources.list.d/gcsfuse.list \
  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
- && apt-get update\
+ && apt-get update \
  && apt-get install -y gcsfuse 
-
-# setup ssh keys
-RUN mkdir /home/jovyan/.ssh
-COPY id_rsa* /home/jovyan/.ssh/ 
-RUN chown -R $NB_USER /home/jovyan/.ssh\
-  && chmod 600 /home/jovyan/.ssh/id_rsa\
-  && ssh-keygen -A
 
 # python level stuff
 USER $NB_USER
@@ -74,9 +66,6 @@ ADD ipython_config.py /etc/ipython/
 ADD jupyter_notebook_config.py /etc/jupyter/
 COPY jupyter-theme/* /home/jovyan/.jupyter/custom/
 COPY jupyter-theme/fonts/* /home/jovyan/.jupyter/custom/fonts/
-
-# pre fill known_hosts
-RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
 
 RUN qpython_update
 USER root
