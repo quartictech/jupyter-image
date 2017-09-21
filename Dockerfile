@@ -65,7 +65,7 @@ USER $NB_USER
 RUN conda update --quiet --all -y \
   && conda install libspatialindex -y \
   && conda clean --all -y
-RUN pip install jgscm pyarrow fastparquet geopandas rtree nltk tornado==4.4.1
+RUN pip install jgscm pyarrow==0.7.0 fastparquet geopandas rtree nltk tornado==4.4.1
 RUN python  -m nltk.downloader stopwords
 
 # add our jupyter customizations
