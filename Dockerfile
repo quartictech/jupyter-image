@@ -78,7 +78,7 @@ COPY jupyter-theme/fonts/* /home/jovyan/.jupyter/custom/fonts/
 # pre fill known_hosts
 RUN ssh-keyscan -t rsa github.com 2>&1 >> /home/jovyan/.ssh/known_hosts
 
-RUN shrubbery_update
+RUN qpython_update
 USER root
 
 CMD shrubbery_update \

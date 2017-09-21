@@ -1,4 +1,0 @@
-#!/bin/bash
-BRANCH="${1:-develop}"
-pip install --upgrade \
-	git+ssh://git@github.com/quartictech/shrubbery.git@$BRANCH --upgrade-strategy only-if-needed
