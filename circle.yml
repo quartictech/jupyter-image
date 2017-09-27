@@ -15,3 +15,15 @@ jobs:
       - run: |
           gcloud-auth --with-docker
           ./build.sh
+
+      - run:
+            name: Run tests
+            # See https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+            command: |
+              docker create -e "GCLOUD_SERVICE_KEY=${GCLOUD_SERVICE_KEY}" -e "GCLOUD_PROJECT_ID=${GCLOUD_PROJECT_ID}" \
+                --name test quartic/jupyter-image:${CIRCLE_BUILD_NUM} sudo -E -u jovyan /home/jovyan/test/run_tests.sh
+              # This permission change (along with the -a below) seems to be necessary to ensure
+              # the quartic user inside the container can write to the test directory.
+              chmod -R a+rw $(pwd)/test
+              docker cp -a $(pwd)/test test:/home/jovyan/test
+              docker start -a test
