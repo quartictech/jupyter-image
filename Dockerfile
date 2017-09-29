@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:628fbcb24afd
+FROM jupyter/minimal-notebook:e1677043235c
 
 # jupyter stuff
 USER root
