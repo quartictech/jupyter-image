@@ -13,8 +13,7 @@ jobs:
       - setup_remote_docker
 
       - run: |
-          gcloud-auth --with-docker
-          ./build.sh
+          docker build -t quartic/jupyter:${CIRCLE_BUILD_NUM} .
 
       - run:
             name: Run tests
@@ -27,3 +26,6 @@ jobs:
               chmod -R a+rw $(pwd)/test
               docker cp -a $(pwd)/test test:/home/jovyan/test
               docker start -a test
+      - run: |
+          gcloud-auth --with-docker
+          ./build.sh
