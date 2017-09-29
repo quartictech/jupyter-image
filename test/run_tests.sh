@@ -4,9 +4,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 git clone https://github.com/sstephenson/bats.git
 pushd bats
-./install.sh /home/quartic/
+./install.sh /home/jovyan/
 popd
 
 pushd ${DIR}
-/home/quartic/bin/bats tests.bats
+/home/jovyan/bin/bats tests.bats
 popd
