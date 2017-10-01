@@ -1,0 +1,27 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: quartic/uber-builder:117
+
+    working_directory: ~/jupyter-image
+
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: Build Docker image
+          command: docker build -t jupyter .
+
+      - run:
+          name: GCloud auth
+          command: google-cloud-auth --with-docker
+
+      - run:
+          name: Publish Docker image
+          command: |
+            docker tag jupyter ${GCLOUD_DOCKER_REPOSITORY}/jupyter:${CIRCLE_BUILD_NUM}
+            docker push ${GCLOUD_DOCKER_REPOSITORY}/jupyter:${CIRCLE_BUILD_NUM}
