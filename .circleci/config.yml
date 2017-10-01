@@ -3,7 +3,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: quartic/uber-builder:117
+      - image: ${GOOGLE_DOCKER_REPOSITORY}/uber-builder:139
+        auth: { username: _json_key, password: "${GOOGLE_CREDENTIALS}" }
 
     working_directory: ~/jupyter-image
 
@@ -22,6 +23,4 @@ jobs:
 
       - run:
           name: Publish Docker image
-          command: |
-            docker tag jupyter ${GCLOUD_DOCKER_REPOSITORY}/jupyter:${CIRCLE_BUILD_NUM}
-            docker push ${GCLOUD_DOCKER_REPOSITORY}/jupyter:${CIRCLE_BUILD_NUM}
+          command: docker-tag-and-push jupyter ${CIRCLE_BUILD_NUM}
