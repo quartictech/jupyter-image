@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: quartic/uber-builder:113
+      - image: quartic/uber-builder:144
 
     working_directory: ~/jupyter-image
 
@@ -12,8 +12,9 @@ jobs:
 
       - setup_remote_docker
 
-      - run: |
-          docker build -t quartic/jupyter:${CIRCLE_BUILD_NUM} .
+      - run:
+          name: Build Docker image
+          command: docker build -t jupyter .
 
       - run:
             name: Run tests
@@ -25,6 +26,15 @@ jobs:
               chmod -R a+rw $(pwd)/test
               docker cp -a $(pwd)/test test:/home/jovyan/test
               docker start -a test
+
       - run: |
           gcloud-auth --with-docker
           ./build.sh
+
+      - run:
+          name: GCloud auth
+          command: google-cloud-auth --with-docker
+
+      - run:
+          name: Publish Docker image
+          command: docker-tag-and-push jupyter ${CIRCLE_BUILD_NUM}
