@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:628fbcb24afd
+FROM jupyter/minimal-notebook:e1677043235c
 
 # jupyter stuff
 USER root
@@ -43,7 +43,7 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 # Quartic stuff
 USER root
 RUN apt-get update \
- && apt-get install -y libgeos-dev curl libspatialindex-c3 \
+ && apt-get install -y libgeos-dev curl libspatialindex-c4v5 mysql-client \
  && apt-get clean \
  && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 

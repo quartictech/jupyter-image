@@ -17,6 +17,17 @@ jobs:
           command: docker build -t jupyter .
 
       - run:
+            name: Run tests
+            # See https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+            command: |
+              docker create --name test jupyter sudo -E -u jovyan /home/jovyan/test/run_tests.sh
+              # This permission change (along with the -a below) seems to be necessary to ensure
+              # the quartic user inside the container can write to the test directory.
+              chmod -R a+rw $(pwd)/test
+              docker cp -a $(pwd)/test test:/home/jovyan/test
+              docker start -a test
+
+      - run:
           name: GCloud auth
           command: google-cloud-auth --with-docker
 
