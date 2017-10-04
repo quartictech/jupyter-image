@@ -29,7 +29,6 @@ RUN conda install --quiet --yes \
     'bokeh=0.12*' \
     'sqlalchemy=1.1*' \
     'hdf5=1.8.17' \
-    "mysql-connector=2.1.4" \
     'h5py=2.6*' \
     'vincent=0.4.*' \
     'beautifulsoup4=4.5.*' \
@@ -58,7 +57,15 @@ USER $NB_USER
 RUN conda update --quiet --all -y \
   && conda install libspatialindex -y \
   && conda clean --all -y
-RUN pip install jgscm pyarrow==0.7.0 fastparquet geopandas datadiff rtree nltk tornado==4.4.1
+RUN pip install jgscm \
+    pyarrow==0.7.0 \
+    fastparquet \
+    geopandas \
+    datadiff \
+    rtree \
+    nltk \
+    tornado==4.4.1 \
+    mysql-connector==2.1.4
 RUN python  -m nltk.downloader stopwords
 
 # add our jupyter customizations
