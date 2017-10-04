@@ -29,6 +29,7 @@ RUN conda install --quiet --yes \
     'bokeh=0.12*' \
     'sqlalchemy=1.1*' \
     'hdf5=1.8.17' \
+    "mysql-connector=2.1.4" \
     'h5py=2.6*' \
     'vincent=0.4.*' \
     'beautifulsoup4=4.5.*' \
