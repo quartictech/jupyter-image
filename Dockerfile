@@ -65,7 +65,8 @@ RUN pip install jgscm \
     rtree \
     nltk \
     tornado==4.4.1 \
-    mysql-connector==2.1.4
+    mysql-connector==2.1.4 \
+    scikit-surprise=1.0.4 #basic recommender library - useful for CS
 RUN python  -m nltk.downloader stopwords
 
 # add our jupyter customizations
